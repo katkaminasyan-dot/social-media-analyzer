@@ -1,15 +1,18 @@
-class SentimentAnalyzer:
+POSITIVE_WORDS = {"good", "love", "great"}
+NEGATIVE_WORDS = {"bad", "hate", "terrible"}
 
+class SentimentAnalyzer:
     def analyze(self, text):
         if not text:
             return "NEUTRAL"
 
-        text = text.lower()
+        normalized_text = text.lower()
 
-        if "good" in text or "love" in text or "great" in text:
+        if any(word in normalized_text for word in POSITIVE_WORDS):
             return "POSITIVE"
 
-        if "bad" in text or "hate" in text or "terrible" in text:
+        if any(word in normalized_text for word in NEGATIVE_WORDS):
             return "NEGATIVE"
 
         return "NEUTRAL"
+
